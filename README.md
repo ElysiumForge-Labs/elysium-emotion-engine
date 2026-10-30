@@ -1,12 +1,12 @@
 # elysium-emotion-engine
 
-**Elysium X 20** — a pure-Python emotion-state engine for AI agents and companion models. Appraise a message, update persistent state, let it decay, and get a prompt block, style parameters, and a memory decision back.
+Pure-Python emotion-state engine for AI agents and companion models (**Elysium X 20** / Project NHE). Appraise a message, update persistent state, let it decay, and return a prompt block, style parameters, and a memory decision.
 
-Part of [ElysiumForge Labs](https://github.com/ElysiumForge-Labs). Part of Project NHE.
+Part of [ElysiumForge Labs](https://github.com/ElysiumForge-Labs).
 
-> **Independent research repository.** Models a *state that changes behaviour*; it makes no claim that an agent "really feels". Zero runtime dependencies.
+> **Independent research repository.** Models a *state that changes behaviour*; it makes no claim that an agent "really feels". Zero runtime dependencies. Not affiliated with, endorsed by, or sponsored by Kinetiq or Hyperliquid.
 
-## Outputs
+## Features
 
 | Output | What you get |
 | --- | --- |
@@ -14,20 +14,33 @@ Part of [ElysiumForge Labs](https://github.com/ElysiumForge-Labs). Part of Proje
 | `style()` | `warmth`, `energy`, `verbosity`, `temperature_delta`, `emoji_ok` |
 | `memory_policy()` | Whether to store this turn, with tags and a salience score |
 
-## Philosophy
+Design principles:
 
 - **Functional, not claimed.** Emotion is data that accumulates, decays, has a slow mood, and persists across sessions — not vibes written into a static system prompt.
-- **Transparent and swappable.** The default appraiser is a small word-list heuristic. Replace it with a classifier or LLM call without touching the rest.
+- **Transparent and swappable.** The default appraiser is a small word-list heuristic. Replace it with a classifier or LLM call without touching the rest of the engine.
 - **Emotion shapes memory.** Charged moments are flagged for storage via `memory_policy()`.
 
-## Install
+## Stack
+
+| Item | Value |
+| --- | --- |
+| Language | Python ≥ 3.9 |
+| Runtime deps | None |
+| Package name | `elysium-x20` (`src/elysium_x20`) |
+| Version | 0.1.0 |
+| Tests | pytest (optional `[dev]` extra) |
+| License | MIT |
+
+## Getting started
+
+### Install
 
 ```bash
 pip install -e .                 # from a clone
 pip install -e ".[dev]"          # with pytest
 ```
 
-## Quick start
+### Quick start
 
 ```python
 from elysium_x20 import EmotionEngine, Personality
@@ -46,11 +59,21 @@ if decision.store:
 
 See `examples/companion_loop.py` for a full stubbed loop. Assets under `assets/` illustrate architecture and demo output.
 
-## Tests
+### Tests
 
 ```bash
 pytest
 ```
+
+## Layout
+
+| Path | Role |
+| --- | --- |
+| `src/elysium_x20/` | Engine package |
+| `examples/` | Companion loop stub |
+| `tests/` | pytest suite |
+| `assets/` | Architecture and demo figures |
+| `scripts/` | Helper scripts |
 
 ## License
 
